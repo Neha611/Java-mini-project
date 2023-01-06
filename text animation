@@ -1,0 +1,52 @@
+package move;
+
+import java.applet.Applet;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+public class Move extends Applet implements Runnable{
+    Thread t;
+    int x,y;
+    int size = 150;
+    Font f;
+    public void init() {
+        // TODO start asynchronous download of heavy resources
+        x=900;y=900;t=new Thread(this);
+        t.start();
+        setBackground(Color.CYAN);
+    }
+    // TODO overwrite start(), stop() and destroy() methods
+
+    @Override
+    public void paint(Graphics g) {
+        
+            g.setFont(new Font("Arial",Font.BOLD,size));
+            
+        
+        g.drawString("Neha Gupta", x, y);  
+    }
+
+    @Override
+    public void run() {
+
+        try {
+            while (true) {
+               /* if (x>800) {
+                    x=100;
+                }*/
+                if (y<=100) {
+                    y=900;
+                }
+                
+              size-=5;
+                       
+                Thread.sleep(500);
+                //x+=50;
+                y-=20;
+                repaint();
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+}
